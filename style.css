@@ -1,0 +1,430 @@
+/* --- Customization Variables (Highly Recommended!) --- */
+/* These variables make it easy to change colors globally. */
+/* You can define default (light mode) values here. */
+:root {
+    --text-color: #333;           /* Default text color */
+    --background-color: #f8f8f8;  /* Default background */
+    --primary-color: #007bff;     /* Main accent color (e.g., buttons, links) */
+    --secondary-color: #6c757d;   /* Secondary accent color */
+    --header-bg: #fff;            /* Header background */
+    --footer-bg: #f0f0f0;         /* Footer background */
+    --border-color: #e0e0e0;      /* General border color */
+    --hover-color: #0056b3;       /* Button/link hover color */
+    --card-bg: #fff;              /* Card background */
+
+    /* Typography */
+    --font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --heading-font-family: 'Montserrat', sans-serif; /* You can link this from Google Fonts */
+    --base-font-size: 1.1rem;
+}
+
+/* Dark Mode Overrides */
+/* This media query checks for the user's system preference */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text-color: #f0f0f0;
+        --background-color: #1a1a1a;
+        --primary-color: #5bbad5;     /* Lighter primary for dark mode */
+        --secondary-color: #adb5bd;
+        --header-bg: #222;
+        --footer-bg: #222;
+        --border-color: #333;
+        --hover-color: #7ddcff;
+        --card-bg: #2a2a2a;
+    }
+}
+
+/* --- Base Styles --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth theme transition */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- Typography --- */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--heading-font-family);
+    margin-bottom: 0.8em;
+    color: var(--text-color); /* Ensure headings also adapt */
+}
+
+h1 { font-size: 2.8em; }
+h2 { font-size: 2.2em; }
+h3 { font-size: 1.8em; }
+p { margin-bottom: 1em; }
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+a:hover {
+    color: var(--hover-color);
+}
+
+/* --- Header & Navigation --- */
+header {
+    background-color: var(--header-bg);
+    padding: 1.5em 0;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Subtle shadow */
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    letter-spacing: 1px;
+}
+
+header nav ul {
+    list-style: none;
+}
+
+header nav ul li {
+    display: inline-block;
+    margin-left: 25px;
+}
+
+header nav a {
+    font-weight: bold;
+    font-size: var(--base-font-size);
+    padding: 5px 0;
+    position: relative;
+    color: var(--text-color); /* Navigation links should also adapt */
+}
+
+header nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    display: block;
+    margin-top: 5px;
+    right: 0;
+    background: var(--primary-color);
+    transition: width 0.3s ease;
+    -webkit-transition: width 0.3s ease;
+}
+
+header nav a:hover::after,
+header nav a.active::after {
+    width: 100%;
+    left: 0;
+    background: var(--primary-color);
+}
+
+header nav a.active {
+    color: var(--primary-color); /* Highlight active link */
+}
+
+/* --- Main Content --- */
+main {
+    padding: 40px 0;
+}
+
+section {
+    margin-bottom: 40px;
+    padding: 20px 0;
+}
+
+.page-title {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.page-title h2 {
+    font-size: 3em;
+    margin-bottom: 15px;
+}
+
+.hero {
+    text-align: center;
+    padding: 80px 0;
+    background-color: var(--card-bg); /* Use card-bg for hero section */
+    border-radius: 8px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero h2 {
+    font-size: 3.5em;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.hero p {
+    font-size: 1.3em;
+    max-width: 800px;
+    margin: 0 auto 30px auto;
+}
+
+/* Buttons */
+.button {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button:hover {
+    background-color: var(--hover-color);
+    transform: translateY(-2px);
+}
+
+.button-secondary {
+    display: inline-block;
+    background-color: var(--secondary-color);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: normal;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button-secondary:hover {
+    background-color: var(--text-color); /* Darken for secondary hover */
+    transform: translateY(-1px);
+}
+
+/* Game Cards / Project Grid */
+.featured-game, .project-grid {
+    display: grid;
+    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+}
+
+.featured-game .game-card {
+    grid-column: 1 / -1; /* Make featured game span full width */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.featured-game .game-card img {
+    max-width: 100%;
+    height: auto;
+    max-height: 350px;
+    object-fit: cover;
+}
+
+
+.game-card {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.12);
+}
+
+.game-card img {
+    width: 100%;
+    height: 200px; /* Fixed height for consistency */
+    object-fit: cover; /* Cover the area, cropping if necessary */
+    display: block; /* Remove extra space below image */
+    margin-bottom: 15px;
+}
+
+.game-card h4 {
+    font-size: 1.4em;
+    margin: 15px 15px 10px 15px;
+}
+
+.game-card p {
+    font-size: 0.95em;
+    margin: 0 15px 20px 15px;
+    line-height: 1.5;
+}
+
+.game-card .button-secondary {
+    margin-top: auto; /* Push button to bottom */
+}
+
+
+/* About Page Specifics */
+.team-intro, .team-members, .contact-info {
+    padding: 20px;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    margin-bottom: 30px;
+    transition: background-color 0.3s ease;
+}
+
+.team-members {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    text-align: center;
+}
+
+.member-card {
+    background-color: var(--background-color); /* Lighter background for member cards */
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+    transition: background-color 0.3s ease;
+}
+
+.member-card img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 3px solid var(--primary-color);
+}
+
+.member-card h4 {
+    margin-bottom: 5px;
+    font-size: 1.3em;
+}
+
+.member-card p {
+    font-size: 0.9em;
+    color: var(--secondary-color);
+}
+
+/* --- Footer --- */
+footer {
+    background-color: var(--footer-bg);
+    color: var(--text-color); /* Footer text should also adapt */
+    text-align: center;
+    padding: 2em 0;
+    margin-top: 50px;
+    border-top: 1px solid var(--border-color);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9em;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    header .container {
+        flex-direction: column;
+        text-align: center;
+    }
+    header h1 {
+        margin-bottom: 15px;
+    }
+    header nav ul li {
+        margin: 0 10px;
+    }
+    .hero {
+        padding: 50px 20px;
+    }
+    .hero h2 {
+        font-size: 2.5em;
+    }
+    .hero p {
+        font-size: 1.1em;
+    }
+    .project-grid {
+        grid-template-columns: 1fr; /* Stack projects on small screens */
+    }
+    .featured-game .game-card img {
+        height: auto;
+        max-height: 250px;
+    }
+}
+
+/* Social Buttons Container */
+.social-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-start; /* Changed from center to flex-start */
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.contact-info {
+    text-align: left; /* Ensures the H3 and P tags align with the buttons */
+}
+/* Base Button Style */
+.social-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    border: 2px solid var(--border-color);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s;
+    box-shadow: 0 4px 0 var(--border-color); /* "Pop up" height */
+}
+
+.social-btn img {
+    width: 20px;
+    height: 20px;
+}
+
+/* Hover State - Lift it slightly */
+.social-btn:hover {
+    transform: translateY(-2px);
+    background-color: var(--card-bg);
+    box-shadow: 0 6px 0 var(--border-color);
+    color: var(--primary-color);
+}
+
+/* Active State - THE POP DOWN ANIMATION */
+.social-btn:active {
+    transform: translateY(4px); /* Moves down */
+    box-shadow: 0 0px 0 var(--border-color); /* Flattens shadow */
+}
+
+/* Optional: Subtle color hints for each brand */
+.social-btn.discord:hover { border-color: #5865F2; }
+.social-btn.youtube:hover { border-color: #FF0000; }
+.social-btn.x-twitter:hover { border-color: #1DA1F2; }
+
+@media (max-width: 480px) {
+    h1 { font-size: 2.2em; }
+    h2 { font-size: 1.8em; }
+    .hero h2 { font-size: 2em; }
+    header nav ul li {
+        display: block;
+        margin: 10px 0;
+    }
+    .container {
+        padding: 0 15px;
+    }
+}
